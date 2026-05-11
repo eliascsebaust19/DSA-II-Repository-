@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+int LIS(int i, int p,
+vector<int>& nums)
+{
+    if(i == nums.size()) return 0;
+     int skip = LIS(i + 1, p, nums);
+     int take = 0;
+            if(p == -1 || nums[i] > nums[p])
+            {
+        take = 1 + LIS(i + 1, i, nums);
+          }
+
+    return max(take, skip);
+}
+int main()
+{
+       vector<int> nums = {10, 9, 2, 5, 3, 7, 101, 18};
+       cout << LIS(0, -1, nums) << endl;
+             return 0;
+}

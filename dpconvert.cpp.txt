@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+#include<chrono>
+using namespace std;
+using namespace std::chrono;
+
+// Step 1: declare dp array
+const int N = 1000;
+int dp[N];
+
+int fib(int n){
+    if(n==0 || n==1) return n;
+
+    // Step 2: check if already computed
+    if(dp[n] != -1) return dp[n];
+
+    // Step 3: compute and store
+    return dp[n] = fib(n-1) + fib(n-2);
+}
+
+int main(){
+    int n = 45;
+
+    // initialize dp array with -1
+    memset(dp, -1, sizeof(dp));
+
+    auto start = high_resolution_clock::now();
+
+    cout << fib(n) << endl;
+
+    auto end = high_resolution_clock::now();
+
+    auto duration = duration_cast<milliseconds>(end - start);
+    cout << "Time: " << duration.count() << " ms" << endl;
+
+    return 0;
+}
